@@ -1,0 +1,49 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="aiGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34D399" />
+      <stop offset="100%" stop-color="#3B82F6" />
+    </linearGradient>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E293B" />
+      <stop offset="100%" stop-color="#0F172A" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bgGradient)" rx="20"/>
+
+  <!-- Sidebar -->
+  <rect x="0" y="0" width="200" height="600" fill="#1E293B" rx="20" opacity="0.8"/>
+  <circle cx="100" cy="100" r="40" fill="url(#aiGradient)" />
+  <rect x="50" y="160" width="100" height="15" fill="#334155" rx="5"/>
+  <rect x="30" y="220" width="140" height="20" fill="#3B82F6" rx="5"/>
+  <rect x="30" y="260" width="140" height="20" fill="#334155" rx="5"/>
+  <rect x="30" y="300" width="140" height="20" fill="#334155" rx="5"/>
+
+  <!-- Main Chat Window -->
+  <!-- Top Bar -->
+  <rect x="200" y="0" width="600" height="80" fill="#1E293B" rx="0" opacity="0.5"/>
+  <text x="240" y="45" font-family="Arial, sans-serif" font-size="24" fill="#E2E8F0" font-weight="bold">AI Assistant</text>
+
+  <!-- Chat Bubbles -->
+  <rect x="240" y="120" width="300" height="60" fill="#334155" rx="15"/>
+  <rect x="260" y="140" width="200" height="10" fill="#94A3B8" rx="5"/>
+  <rect x="260" y="155" width="150" height="10" fill="#94A3B8" rx="5"/>
+
+  <rect x="460" y="210" width="300" height="80" fill="url(#aiGradient)" rx="15"/>
+  <rect x="480" y="230" width="250" height="10" fill="#F8FAFC" rx="5"/>
+  <rect x="480" y="250" width="200" height="10" fill="#F8FAFC" rx="5"/>
+  <rect x="480" y="270" width="150" height="10" fill="#F8FAFC" rx="5"/>
+
+  <rect x="240" y="320" width="350" height="100" fill="#334155" rx="15"/>
+  <rect x="260" y="350" width="250" height="10" fill="#94A3B8" rx="5"/>
+  <rect x="260" y="370" width="200" height="10" fill="#94A3B8" rx="5"/>
+  <rect x="260" y="390" width="100" height="10" fill="#94A3B8" rx="5"/>
+
+  <!-- Input Field -->
+  <rect x="240" y="500" width="520" height="60" fill="#0F172A" stroke="#334155" stroke-width="2" rx="30"/>
+  <rect x="270" y="525" width="300" height="10" fill="#475569" rx="5"/>
+  <circle cx="720" cy="530" r="20" fill="url(#aiGradient)"/>
+  <polygon points="715,520 725,530 715,540" fill="#FFF"/>
+</svg>

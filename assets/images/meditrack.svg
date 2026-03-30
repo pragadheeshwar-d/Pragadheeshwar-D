@@ -1,0 +1,58 @@
+<svg width="800" height="600" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="medGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14B8A6" />
+      <stop offset="100%" stop-color="#0EA5E9" />
+    </linearGradient>
+    <linearGradient id="bgMed" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F0FDF4" />
+      <stop offset="100%" stop-color="#E0F2FE" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bgMed)" rx="20"/>
+
+  <!-- Header -->
+  <rect x="0" y="0" width="800" height="100" fill="#FFFFFF" opacity="0.9" rx="0"/>
+  <circle cx="60" cy="50" r="25" fill="url(#medGradient)" />
+  <rect x="52" y="30" width="16" height="40" fill="#FFFFFF" rx="2" />
+  <rect x="40" y="42" width="40" height="16" fill="#FFFFFF" rx="2" />
+  <text x="100" y="60" font-family="Arial, sans-serif" font-size="28" fill="#0F172A" font-weight="bold">MediTrack</text>
+
+  <!-- Cards -->
+  <!-- Main Chart -->
+  <rect x="40" y="130" width="460" height="250" fill="#FFFFFF" rx="15" stroke="#E2E8F0" stroke-width="2"/>
+  <rect x="60" y="160" width="150" height="15" fill="#94A3B8" rx="5"/>
+  <polyline points="70,320 150,240 230,280 330,190 440,220" fill="none" stroke="url(#medGradient)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="70" cy="320" r="6" fill="#14B8A6"/>
+  <circle cx="150" cy="240" r="6" fill="#14B8A6"/>
+  <circle cx="230" cy="280" r="6" fill="#14B8A6"/>
+  <circle cx="330" cy="190" r="6" fill="#14B8A6"/>
+  <circle cx="440" cy="220" r="6" fill="#14B8A6"/>
+
+  <!-- Patient Stats -->
+  <rect x="530" y="130" width="230" height="115" fill="url(#medGradient)" rx="15"/>
+  <text x="560" y="170" font-family="Arial, sans-serif" font-size="20" fill="#FFFFFF">Heart Rate</text>
+  <text x="560" y="215" font-family="Arial, sans-serif" font-size="36" fill="#FFFFFF" font-weight="bold">72 BPM</text>
+
+  <rect x="530" y="265" width="230" height="115" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2" rx="15"/>
+  <text x="560" y="305" font-family="Arial, sans-serif" font-size="20" fill="#64748B">Blood Pressure</text>
+  <text x="560" y="350" font-family="Arial, sans-serif" font-size="36" fill="#0F172A" font-weight="bold">120/80</text>
+
+  <!-- Tablet List -->
+  <rect x="40" y="410" width="720" height="150" fill="#FFFFFF" rx="15" stroke="#E2E8F0" stroke-width="2"/>
+  <text x="60" y="450" font-family="Arial, sans-serif" font-size="22" fill="#0F172A" font-weight="bold">Today's Medication</text>
+  
+  <rect x="60" y="480" width="300" height="60" fill="#F1F5F9" rx="10"/>
+  <circle cx="90" cy="510" r="15" fill="#F87171"/>
+  <rect x="120" y="495" width="120" height="12" fill="#475569" rx="5"/>
+  <rect x="120" y="515" width="80" height="10" fill="#94A3B8" rx="5"/>
+  <rect x="280" y="495" width="60" height="30" fill="#14B8A6" rx="15"/>
+
+  <rect x="380" y="480" width="300" height="60" fill="#F1F5F9" rx="10"/>
+  <circle cx="410" cy="510" r="15" fill="#60A5FA"/>
+  <rect x="440" y="495" width="140" height="12" fill="#475569" rx="5"/>
+  <rect x="440" y="515" width="90" height="10" fill="#94A3B8" rx="5"/>
+  <rect x="600" y="495" width="60" height="30" fill="#CBD5E1" rx="15"/>
+</svg>

@@ -1,0 +1,1532 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pragadheeshwar D - Personal Portfolio</title>
+
+  <!--
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
+
+  <!--
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* Certificates Section Styling */
+    .cert-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    @media (min-width: 768px) {
+      .cert-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .cert-card {
+      background: var(--eerie-black-2);
+      border: 1px solid var(--jet);
+      border-radius: 14px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .cert-card::before {
+      content: "";
+      position: absolute;
+      top: -100%;
+      left: -100%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center, var(--orange-yellow-crayola) 0%, transparent 70%);
+      opacity: 0;
+      transition: 0.5s ease;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .cert-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--orange-yellow-crayola);
+    }
+
+    .cert-card:hover::before {
+      opacity: 0.05;
+      top: -50%;
+      left: -50%;
+    }
+
+    .cert-icon-badge {
+      width: 45px;
+      height: 45px;
+      background: var(--onyx);
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 20px;
+      color: var(--orange-yellow-crayola);
+      box-shadow: var(--shadow-1);
+    }
+
+    .cert-badge-ai {
+      color: #8257e5;
+    }
+
+    .cert-badge-intro {
+      color: #00bcd4;
+    }
+
+    .cert-badge-event {
+      color: #4caf50;
+    }
+
+    .cert-badge-general {
+      color: #ff9800;
+    }
+
+    .cert-title {
+      margin-bottom: 4px;
+      color: var(--white-1);
+    }
+
+    .cert-issuer {
+      color: var(--vegas-gold);
+      font-size: var(--fs-7);
+      font-weight: var(--fw-500);
+      margin-bottom: 10px;
+    }
+
+    .cert-desc {
+      color: var(--light-gray);
+      font-size: var(--fs-8);
+      line-height: 1.6;
+    }
+
+    .cert-actions {
+      margin-top: auto;
+      display: flex;
+      gap: 10px;
+      padding-top: 15px;
+      border-top: 1px solid var(--jet);
+    }
+
+    .cert-btn {
+      flex: 1;
+      font-size: 13px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: 0.3s ease;
+      cursor: pointer;
+    }
+
+    .cert-btn-view {
+      background: var(--onyx);
+      color: var(--white-2);
+      border: 1px solid var(--jet);
+    }
+
+    .cert-btn-view:hover {
+      background: var(--orange-yellow-crayola);
+      color: var(--eerie-black-1);
+    }
+
+    .cert-btn-download {
+      background: transparent;
+      color: var(--vegas-gold);
+      border: 1px solid var(--vegas-gold);
+    }
+
+    .cert-btn-download:hover {
+      background: var(--vegas-gold);
+      color: var(--white-1);
+    }
+
+    /* PDF Viewer Modal Styling */
+    .cert-viewer-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.4s ease;
+      backdrop-filter: blur(5px);
+    }
+
+    .cert-viewer-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .cert-viewer-modal {
+      width: 90%;
+      max-width: 1000px;
+      height: 90%;
+      background: var(--eerie-black-1);
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transform: scale(0.9);
+      transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid var(--jet);
+    }
+
+    .cert-viewer-overlay.active .cert-viewer-modal {
+      transform: scale(1);
+    }
+
+    .cert-viewer-header {
+      padding: 15px 25px;
+      background: var(--onyx);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--jet);
+    }
+
+    .cert-viewer-close {
+      font-size: 28px;
+      color: var(--light-gray);
+      transition: 0.3s;
+      cursor: pointer;
+    }
+
+    .cert-viewer-close:hover {
+      color: var(--orange-yellow-crayola);
+    }
+
+    .cert-viewer-body {
+      flex: 1;
+      background: #333;
+    }
+
+    .cert-viewer-body iframe {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!--
+    - #MAIN
+  -->
+
+  <main>
+
+    <!--
+      - #SIDEBAR
+    -->
+
+    <aside class="sidebar" data-sidebar>
+
+      <div class="sidebar-info">
+
+        <figure class="avatar-box">
+          <img src="./assets/images/profile.jpeg" alt="Pragadheeshwar D" width="80">
+        </figure>
+
+        <div class="info-content">
+          <h1 class="name" title="Pragadheeshwar D">Pragadheeshwar D</h1>
+
+          <p class="title">Aspiring Ethical Hacker & AI Enthusiast</p>
+        </div>
+
+        <button class="info_more-btn" data-sidebar-btn>
+          <span>Show Contacts</span>
+
+          <ion-icon name="chevron-down"></ion-icon>
+        </button>
+
+      </div>
+
+      <div class="sidebar-info_more">
+
+        <div class="separator"></div>
+
+        <ul class="contacts-list">
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="mail-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Email</p>
+
+              <a href="mailto:pragadheesh06112007@gmail.com" class="contact-link">pragadheesh06112007@gmail.com</a>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="phone-portrait-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Phone</p>
+
+              <a href="tel:+919786479416" class="contact-link">+91 9786479416</a>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="calendar-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Birthday</p>
+
+              <time datetime="2007-11-06">6 November, 2007</time>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="location-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Location</p>
+
+              <address>Pudukkottai, India</address>
+            </div>
+
+          </li>
+
+        </ul>
+
+        <div class="separator"></div>
+
+        <ul class="social-list">
+
+          <li class="social-item">
+            <a href="https://github.com/pragadheeshwar-d" class="social-link" target="_blank" title="GitHub">
+              <ion-icon name="logo-github"></ion-icon>
+            </a>
+          </li>
+
+          <li class="social-item">
+            <a href="https://www.instagram.com/d_pragadheeshwar/" class="social-link" target="_blank" title="Instagram">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+          </li>
+
+          <li class="social-item">
+            <a href="https://www.facebook.com/pragadheeshwar06/" class="social-link" target="_blank" title="Facebook">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+          </li>
+
+          <li class="social-item">
+            <a href="https://leetcode.com/u/Pragadheeshwar-06/" class="social-link" target="_blank" title="LeetCode">
+              <img src="./assets/images/icons8-leetcode-16.png" alt="LeetCode" style="width: 18px; color: gray;">
+            </a>
+          </li>
+
+          <li class="social-item">
+            <a href="https://www.codechef.com/users/pragadhees_06" class="social-link" target="_blank" title="CodeChef">
+              <ion-icon name="terminal-outline"></ion-icon>
+            </a>
+          </li>
+
+          <li class="social-item">
+            <a href="https://www.geeksforgeeks.org/profile/pragadhees06" class="social-link" target="_blank"
+              title="GeeksforGeeks">
+              <img src="./assets/images/icons8-geeksforgeeks-16.png" alt="GeeksforGeeks" style="width: 18px;">
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </aside>
+
+
+
+
+
+    <!--
+      - #main-content
+    -->
+
+    <div class="main-content">
+
+      <!--
+        - #NAVBAR
+      -->
+
+      <nav class="navbar">
+
+        <ul class="navbar-list">
+
+          <li class="navbar-item">
+            <button class="navbar-link  active" data-nav-link>About</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Resume</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Portfolio</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Certificates</button>
+          </li>
+
+
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Blog</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Contact</button>
+          </li>
+
+        </ul>
+
+      </nav>
+
+
+
+
+
+      <!--
+        - #ABOUT
+      -->
+
+      <article class="about  active" data-page="about">
+
+        <header>
+          <h2 class="h2 article-title">About me</h2>
+        </header>
+
+        <section class="about-text">
+          <p>
+            I am Pragadheeshwar, a passionate and dedicated Web Developer from Pudukkottai, India, currently pursuing my
+            degree at Karpagam College of Engineering, Coimbatore. I enjoy crafting user-friendly interfaces and
+            building robust backend logic that bring ideas to life.
+          </p>
+
+          <p>
+            With a solid foundation in HTML, CSS, JavaScript, and programming languages such as Python, C, and C++, I
+            thrive on solving challenges and continuously expanding my skill set. My projects reflect a balance of
+            creativity and technical precision, aiming to deliver impactful applications that solve real-world problems
+            and provide intuitive user experiences.
+          </p>
+
+          <p style="margin-top: 15px;">
+            Beyond web development, I am an aspiring ethical hacker, driven by curiosity and a commitment to
+            cybersecurity. I am actively strengthening my knowledge in network security, penetration testing, and
+            vulnerability assessment, with the goal of safeguarding digital systems while upholding integrity and
+            responsibility.
+          </p>
+
+          <p style="margin-top: 15px;">
+            My journey is fueled by a desire to learn, innovate, and contribute — whether through building applications,
+            securing systems, or sharing knowledge with peers.
+          </p>
+        </section>
+
+
+        <!--
+          - service
+        -->
+
+        <section class="service">
+
+          <h3 class="h3 service-title">What i'm doing</h3>
+          <ul class="service-list" style="grid-template-columns: 1fr 1fr;">
+
+            <li class="service-item">
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-dev.svg" alt="vulnerability icon" width="40">
+              </div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Competitive Programming</h4>
+                <p class="service-item-text">
+                  Daily practicing in LeetCode, CodeChef, and GeeksforGeeks in Data Structures & Algorithms.
+                </p>
+              </div>
+            </li>
+
+            <li class="service-item">
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-app.svg" alt="web icon" width="40">
+              </div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Web Development</h4>
+                <p class="service-item-text">
+                  Project Ongoing: Building an Event Booking Website using modern web technologies.
+                </p>
+              </div>
+            </li>
+
+            <li class="service-item">
+              <div class="service-icon-box">
+                <img src="./assets/images/ai-assistant.svg" alt="algorithmic icon" width="40">
+              </div>
+              <div class="service-content-box">
+                <h4 class="h4 service-item-title">Algorithmic Coding</h4>
+                <p class="service-item-text">
+                  Immersed in advanced algorithmic coding and high-level competitive programming.
+                </p>
+              </div>
+            </li>
+
+            <li class="service-item">
+              <div class="service-icon-box">
+                <img src="./assets/images/icon-design.svg" alt="specialization icon" width="40">
+              </div>
+              <div class="service-content-box" style="width: 100%;">
+                <h4 class="h4 service-item-title">Current Specialization</h4>
+                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;">
+                  <span
+                    style="background: var(--onyx); border: 1px solid var(--jet); padding: 2px 10px; border-radius: 6px; font-size: var(--fs-8); color: var(--light-gray);">Simulation</span>
+                  <span
+                    style="background: var(--onyx); border: 1px solid var(--jet); padding: 2px 10px; border-radius: 6px; font-size: var(--fs-8); color: var(--light-gray);">Queues
+                    & Stacks</span>
+                  <span
+                    style="background: var(--onyx); border: 1px solid var(--jet); padding: 2px 10px; border-radius: 6px; font-size: var(--fs-8); color: var(--light-gray);">BST
+                    & AVL</span>
+                </div>
+              </div>
+            </li>
+
+          </ul>
+        </section>
+
+
+        <!--
+          - testimonials
+        -->
+
+
+
+      </article>
+
+
+
+
+
+      <!--
+        - #RESUME
+      -->
+
+      <article class="resume" data-page="resume">
+
+        <header>
+          <h2 class="h2 article-title">Resume</h2>
+        </header>
+
+        <section class="timeline">
+
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="book-outline"></ion-icon>
+            </div>
+
+            <h3 class="h3">Education</h3>
+          </div>
+
+          <ol class="timeline-list">
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Karpagam College of Engineering</h4>
+
+              <span>Present</span>
+
+              <p class="timeline-text">
+                Currently pursuing my degree, located in Coimbatore.
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Sivaganagai District Government Model School</h4>
+
+              <span>12th Grade</span>
+
+              <p class="timeline-text">
+                Completed my higher secondary education, located in Sivaganga.
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Government High School</h4>
+
+              <span>10th Grade</span>
+
+              <p class="timeline-text">
+                Completed my secondary education, located in T.Pudhupatti.
+              </p>
+
+            </li>
+
+          </ol>
+
+        </section>
+
+        <!--
+        <section class="timeline">
+
+          <div class="title-wrapper">
+            <div class="icon-box">
+              <ion-icon name="book-outline"></ion-icon>
+            </div>
+
+            <h3 class="h3">Experience</h3>
+          </div>
+
+          <ol class="timeline-list">
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">Intern / Fresher</h4>
+
+              <span>Add duration</span>
+
+              <p class="timeline-text">
+                Any future experience can go here.
+              </p>
+
+            </li>
+
+          </ol>
+
+        </section>
+        -->
+
+        <section class="skill">
+
+          <h3 class="h3 skills-title">My skills</h3>
+
+          <ul class="skills-list content-card">
+
+            <li class="skills-item">
+
+              <div class="title-wrapper">
+                <h5 class="h5">HTML</h5>
+                <data value="90">90%</data>
+              </div>
+
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 90%;"></div>
+              </div>
+
+            </li>
+
+            <li class="skills-item">
+
+              <div class="title-wrapper">
+                <h5 class="h5">CSS</h5>
+                <data value="85">85%</data>
+              </div>
+
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 85%;"></div>
+              </div>
+
+            </li>
+
+            <li class="skills-item">
+
+              <div class="title-wrapper">
+                <h5 class="h5">JavaScript</h5>
+                <data value="70">70%</data>
+              </div>
+
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 70%;"></div>
+              </div>
+
+            </li>
+
+            <li class="skills-item">
+
+              <div class="title-wrapper">
+                <h5 class="h5">Python</h5>
+                <data value="60">60%</data>
+              </div>
+
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 60%;"></div>
+              </div>
+
+            </li>
+
+            <li class="skills-item">
+
+              <div class="title-wrapper">
+                <h5 class="h5">C</h5>
+                <data value="50">50%</data>
+              </div>
+
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 50%;"></div>
+              </div>
+
+            </li>
+
+            <li class="skills-item">
+
+              <div class="title-wrapper">
+                <h5 class="h5">C++</h5>
+                <data value="70">70%</data>
+              </div>
+
+              <div class="skill-progress-bg">
+                <div class="skill-progress-fill" style="width: 70%;"></div>
+              </div>
+
+            </li>
+
+          </ul>
+
+        </section>
+
+      </article>
+
+
+
+
+
+      <!--
+        - #PORTFOLIO
+      -->
+
+      <article class="portfolio" data-page="portfolio">
+
+        <header>
+          <h2 class="h2 article-title">Portfolio</h2>
+        </header>
+
+        <section id="portfolioList" class="projects">
+
+          <ul class="filter-list">
+
+            <li class="filter-item">
+              <button class="active" data-filter-btn>All</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn>Web development</button>
+            </li>
+
+          </ul>
+
+          <div class="filter-select-box">
+
+            <button class="filter-select" data-select>
+
+              <div class="select-value" data-selecct-value>Select category</div>
+
+              <div class="select-icon">
+                <ion-icon name="chevron-down"></ion-icon>
+              </div>
+
+            </button>
+
+            <ul class="select-list">
+
+              <li class="select-item">
+                <button data-select-item>All</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>Web development</button>
+              </li>
+
+            </ul>
+
+          </div>
+
+          <ul class="project-list">
+
+            <li class="project-item active" data-filter-item data-category="web development">
+              <a href="#" class="project-link" data-project-btn="prj1">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/file-transfer.svg" alt="FileTransfer" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">FileTransfer</h3>
+
+                <p class="project-category">Web development</p>
+
+              </a>
+            </li>
+
+          </ul>
+
+        </section>
+
+        <!-- FULL PROJECT DETAILED VIEWS -->
+
+        <!-- FileTransfer Detail -->
+        <section id="prj1" class="full-project-detail content-card" style="display: none; padding: 30px;">
+          <button data-project-back
+            style="color: var(--orange-yellow-crayola); margin-bottom: 25px; font-size: var(--fs-5); display: flex; align-items: center; gap: 5px;">
+            <ion-icon name="arrow-back-outline"></ion-icon> Back to Projects
+          </button>
+
+          <figure class="project-detail-banner"
+            style="width: 100%; border-radius: 16px; overflow: hidden; margin-bottom: 25px; background: var(--jet);">
+            <img src="./assets/images/file-transfer.svg" alt="FileTransfer"
+              style="width: 100%; height: 300px; object-fit: contain; padding: 20px;">
+          </figure>
+
+          <h3 class="h3" style="margin-bottom: 5px; color: var(--white-1);">FileTransfer</h3>
+          <p class="project-category" style="color: var(--vegas-gold); margin-bottom: 20px; font-size: var(--fs-6);">Web
+            Development</p>
+
+          <div class="project-content" style="color: var(--light-gray); font-size: var(--fs-6); line-height: 1.6;">
+            <p style="margin-bottom: 15px;">High-speed, secure peer-to-peer file transfer using WebRTC technology. This
+              application ensures that your data remains private by establishing a direct connection between devices
+              without storing files on any server.</p>
+
+            <h4 class="h4" style="color: var(--white-2); margin: 20px 0 10px;">Key Features</h4>
+            <ul style="list-style: disc; margin-left: 20px; margin-bottom: 20px;">
+              <li>No file size limits — send everything from documents to 4K videos.</li>
+              <li>Completely browser-based; no software installation required.</li>
+              <li>Cross-platform support: Works seamlessly between PC, Android, and iOS.</li>
+            </ul>
+
+            <h4 class="h4" style="color: var(--white-2); margin: 20px 0 10px;">Technologies Used</h4>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+              <span
+                style="background: var(--onyx); padding: 5px 12px; border-radius: 8px; font-size: 12px;">WebRTC</span>
+              <span style="background: var(--onyx); padding: 5px 12px; border-radius: 8px; font-size: 12px;">JavaScript
+                (ES6+)</span>
+              <span
+                style="background: var(--onyx); padding: 5px 12px; border-radius: 8px; font-size: 12px;">PeerJS</span>
+              <span
+                style="background: var(--onyx); padding: 5px 12px; border-radius: 8px; font-size: 12px;">HTML5/CSS3</span>
+            </div>
+          </div>
+        </section>
+
+        <script>
+          const portfolioList = document.getElementById('portfolioList');
+          const prjBtns = document.querySelectorAll('[data-project-btn]');
+          const prjBackBtns = document.querySelectorAll('[data-project-back]');
+          const fullProjectDetails = document.querySelectorAll('.full-project-detail');
+
+          prjBtns.forEach(btn => {
+            btn.addEventListener('click', function (e) {
+              e.preventDefault();
+              const targetId = this.getAttribute('data-project-btn');
+              portfolioList.style.display = 'none';
+              document.getElementById(targetId).style.display = 'block';
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+          });
+
+          prjBackBtns.forEach(btn => {
+            btn.addEventListener('click', function (e) {
+              e.preventDefault();
+              fullProjectDetails.forEach(detail => detail.style.display = 'none');
+              portfolioList.style.display = 'block';
+            });
+          });
+        </script>
+
+      </article>
+
+
+      <!--
+        - #CERTIFICATES
+      -->
+
+      <article class="certificates" data-page="certificates">
+
+        <header>
+          <h2 class="h2 article-title">Certificates</h2>
+        </header>
+
+        <section class="certificates-section">
+
+          <div class="title-wrapper" style="display: flex; align-items: center; gap: 15px; margin-bottom: 25px;">
+            <div class="icon-box">
+              <ion-icon name="ribbon-outline"></ion-icon>
+            </div>
+            <h3 class="h3">My Certifications</h3>
+          </div>
+
+          <ul class="cert-grid">
+
+            <!-- Certificate 1 -->
+            <li class="cert-card">
+              <div class="cert-icon-badge">
+                <ion-icon name="school-outline"></ion-icon>
+              </div>
+              <div class="cert-content">
+                <h4 class="h4 cert-title">Course Completion Certificate</h4>
+                <p class="cert-issuer">Professional Training Program</p>
+                <p class="cert-desc">Successfully completed a structured professional training program demonstrating
+                  proficiency in core skills.</p>
+              </div>
+              <div class="cert-actions">
+                <button class="cert-btn cert-btn-view"
+                  onclick="openCertViewer('./assets/Certificates/717825F140_Pragadheeshwar D.pdf', 'Course Completion Certificate')">
+                  <ion-icon name="eye-outline"></ion-icon> View
+                </button>
+                <a class="cert-btn cert-btn-download" href="./assets/Certificates/717825F140_Pragadheeshwar D.pdf"
+                  download>
+                  <ion-icon name="download-outline"></ion-icon> Download
+                </a>
+              </div>
+            </li>
+
+            <!-- Certificate 2 -->
+            <li class="cert-card">
+              <div class="cert-icon-badge cert-badge-ai">
+                <ion-icon name="sparkles-outline"></ion-icon>
+              </div>
+              <div class="cert-content">
+                <h4 class="h4 cert-title">Generative AI</h4>
+                <p class="cert-issuer">AI & Machine Learning</p>
+                <p class="cert-desc">Completed certification in Generative AI, covering modern AI architectures, prompt
+                  engineering, and practical applications.</p>
+              </div>
+              <div class="cert-actions">
+                <button class="cert-btn cert-btn-view"
+                  onclick="openCertViewer('./assets/Certificates/Generative_AI_Pragadhees.pdf', 'Generative AI Certificate')">
+                  <ion-icon name="eye-outline"></ion-icon> View
+                </button>
+                <a class="cert-btn cert-btn-download" href="./assets/Certificates/Generative_AI_Pragadhees.pdf"
+                  download>
+                  <ion-icon name="download-outline"></ion-icon> Download
+                </a>
+              </div>
+            </li>
+
+            <!-- Certificate 3 -->
+            <li class="cert-card">
+              <div class="cert-icon-badge cert-badge-intro">
+                <ion-icon name="hardware-chip-outline"></ion-icon>
+              </div>
+              <div class="cert-content">
+                <h4 class="h4 cert-title">Introduction to AI</h4>
+                <p class="cert-issuer">Artificial Intelligence Fundamentals</p>
+                <p class="cert-desc">Foundational certification covering AI concepts, machine learning basics, neural
+                  networks, and real-world AI applications.</p>
+              </div>
+              <div class="cert-actions">
+                <button class="cert-btn cert-btn-view"
+                  onclick="openCertViewer('./assets/Certificates/Introduction to AI.pdf', 'Introduction to AI')">
+                  <ion-icon name="eye-outline"></ion-icon> View
+                </button>
+                <a class="cert-btn cert-btn-download" href="./assets/Certificates/Introduction to AI.pdf" download>
+                  <ion-icon name="download-outline"></ion-icon> Download
+                </a>
+              </div>
+            </li>
+
+            <!-- Certificate 4 -->
+            <li class="cert-card">
+              <div class="cert-icon-badge cert-badge-event">
+                <ion-icon name="people-outline"></ion-icon>
+              </div>
+              <div class="cert-content">
+                <h4 class="h4 cert-title">Event Participation Certificate</h4>
+                <p class="cert-issuer">Technical Event / Workshop</p>
+                <p class="cert-desc">Recognized for active participation in a technical event, showcasing
+                  problem-solving skills and collaborative learning.</p>
+              </div>
+              <div class="cert-actions">
+                <button class="cert-btn cert-btn-view"
+                  onclick="openCertViewer('./assets/Certificates/PRAGADHEESHWAR-Participant-Certificate.pdf', 'Event Participation Certificate')">
+                  <ion-icon name="eye-outline"></ion-icon> View
+                </button>
+                <a class="cert-btn cert-btn-download"
+                  href="./assets/Certificates/PRAGADHEESHWAR-Participant-Certificate.pdf" download>
+                  <ion-icon name="download-outline"></ion-icon> Download
+                </a>
+              </div>
+            </li>
+
+            <!-- Certificate 5 -->
+            <li class="cert-card">
+              <div class="cert-icon-badge cert-badge-general">
+                <ion-icon name="medal-outline"></ion-icon>
+              </div>
+              <div class="cert-content">
+                <h4 class="h4 cert-title">Achievement Certificate</h4>
+                <p class="cert-issuer">Academic / Professional Recognition</p>
+                <p class="cert-desc">Awarded for outstanding performance and dedication in academic or professional
+                  development activities.</p>
+              </div>
+              <div class="cert-actions">
+                <button class="cert-btn cert-btn-view"
+                  onclick="openCertViewer('./assets/Certificates/Pragadheeshwar D.pdf', 'Achievement Certificate')">
+                  <ion-icon name="eye-outline"></ion-icon> View
+                </button>
+                <a class="cert-btn cert-btn-download" href="./assets/Certificates/Pragadheeshwar D.pdf" download>
+                  <ion-icon name="download-outline"></ion-icon> Download
+                </a>
+              </div>
+            </li>
+
+          </ul>
+
+        </section>
+
+        <!-- Fullscreen PDF Viewer Modal -->
+        <div class="cert-viewer-overlay" id="certViewerOverlay">
+          <div class="cert-viewer-modal">
+            <div class="cert-viewer-header">
+              <h4 class="h4" id="certViewerTitle" style="color: var(--white-1);">Certificate Preview</h4>
+              <button class="cert-viewer-close" onclick="closeCertViewer()">
+                <ion-icon name="close-outline"></ion-icon>
+              </button>
+            </div>
+            <div class="cert-viewer-body">
+              <iframe id="certViewerFrame" src="" frameborder="0"></iframe>
+            </div>
+          </div>
+        </div>
+
+        <script>
+          function openCertViewer(pdfPath, title) {
+            const overlay = document.getElementById('certViewerOverlay');
+            const frame = document.getElementById('certViewerFrame');
+            const titleElement = document.getElementById('certViewerTitle');
+
+            titleElement.innerText = title || 'Certificate Preview';
+            frame.src = pdfPath;
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+          }
+
+          function closeCertViewer() {
+            const overlay = document.getElementById('certViewerOverlay');
+            const frame = document.getElementById('certViewerFrame');
+            overlay.classList.remove('active');
+            frame.src = '';
+            document.body.style.overflow = '';
+          }
+
+          // Close on overlay background click
+          document.getElementById('certViewerOverlay').addEventListener('click', function (e) {
+            if (e.target === this) closeCertViewer();
+          });
+
+          // Close on Escape key
+          document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') closeCertViewer();
+          });
+        </script>
+
+      </article>
+
+
+
+
+
+      <!--
+        - #BLOG
+      -->
+
+      <article class="blog" data-page="blog">
+
+        <header>
+          <h2 class="h2 article-title">Blog</h2>
+        </header>
+
+        <section id="blogList" class="blog-posts">
+
+          <ul class="blog-posts-list">
+
+            <li class="blog-post-item">
+              <a href="#" data-blog-btn="post2">
+
+                <figure class="blog-banner-box">
+                  <img src="./assets/images/blog-tech.svg" alt="New Technology in 2026" loading="lazy">
+                </figure>
+
+                <div class="blog-content">
+
+                  <div class="blog-meta">
+                    <p class="blog-category">Technology & Career</p>
+
+                    <span class="dot"></span>
+
+                    <time datetime="2026-03-20">Mar 20, 2026</time>
+                  </div>
+
+                  <h3 class="h3 blog-item-title">New Technology in 2026: A Student’s Guide</h3>
+
+                  <p class="blog-text">
+                    Technology in 2026 is not just about futuristic gadgets — it’s about tools that directly empower
+                    students and professionals. From AI-driven coding assistants to immersive classrooms...
+                  </p>
+
+                  <span
+                    style="color: var(--orange-yellow-crayola); margin-top: 15px; display: inline-block; font-size: var(--fs-6); font-weight: var(--fw-500);">Read
+                    More &rarr;</span>
+
+                </div>
+
+              </a>
+            </li>
+
+            <li class="blog-post-item">
+              <a href="#" data-blog-btn="post1">
+
+                <figure class="blog-banner-box">
+                  <img src="./assets/images/blog-dsa.svg" alt="Data Structures and Algorithms" loading="lazy">
+                </figure>
+
+                <div class="blog-content">
+
+                  <div class="blog-meta">
+                    <p class="blog-category">Programming</p>
+
+                    <span class="dot"></span>
+
+                    <time datetime="2026-03-25">Mar 25, 2026</time>
+                  </div>
+
+                  <h3 class="h3 blog-item-title">Data Structures & Algorithms: A Complete Student Guide</h3>
+
+                  <p class="blog-text">
+                    From arrays to graphs, data structures and algorithms are the backbone of every great software
+                    system. This guide breaks down the core concepts every CS student must know...
+                  </p>
+
+                  <span
+                    style="color: var(--orange-yellow-crayola); margin-top: 15px; display: inline-block; font-size: var(--fs-6); font-weight: var(--fw-500);">Read
+                    More &rarr;</span>
+
+                </div>
+
+              </a>
+            </li>
+
+          </ul>
+
+        </section>
+
+        <!-- FULL BLOG POST VIEW 1 - DSA -->
+        <section id="post1" class="full-blog-post blog-post-content content-card" style="display: none; padding: 30px;">
+          <button data-blog-back
+            style="color: var(--orange-yellow-crayola); margin-bottom: 25px; font-size: var(--fs-5); display: flex; align-items: center; gap: 5px;">
+            <ion-icon name="arrow-back-outline"></ion-icon> Back to Articles
+          </button>
+
+          <h3 class="h3" style="margin-bottom: 15px; color: var(--white-1); line-height: 1.3;">Data Structures &amp;
+            Algorithms: A Complete Student Guide</h3>
+          <p style="color: var(--light-gray); margin-bottom: 20px; line-height: 1.6;">Data Structures and Algorithms
+            (DSA) are the foundation of computer science and software engineering. Whether you are preparing for
+            placements, competitive programming, or just want to write better code, mastering DSA is non-negotiable.
+            This guide covers all major topics with definitions, complexity analysis, and practical tips.</p>
+
+          <h4 class="h4" style="margin-top: 30px; margin-bottom: 10px; color: var(--vegas-gold);"> 1. Linear Data
+            Structures</h4>
+
+          <p style="color: var(--light-gray); margin-bottom: 10px; line-height: 1.6;"><strong>Arrays</strong>:
+            Fixed-size, index-based collection. Best for random access — O(1).</p>
+          <p style="color: var(--light-gray); margin-bottom: 10px; line-height: 1.6;"><strong>Linked Lists</strong>:
+            Dynamic chain of nodes. Insertion/deletion at head — O(1), search — O(n).</p>
+          <p style="color: var(--light-gray); margin-bottom: 10px; line-height: 1.6;"><strong>Stack (LIFO)</strong>:
+            Push/Pop from top. Used in recursion, undo operations, and expression parsing.</p>
+          <p style="color: var(--light-gray); margin-bottom: 30px; line-height: 1.6;"><strong>Queue (FIFO)</strong>:
+            Enqueue at rear, Dequeue from front. Used in BFS and CPU scheduling.</p>
+
+          <h4 class="h4" style="margin-top: 30px; margin-bottom: 10px; color: var(--vegas-gold);"> 2. Non-Linear Data
+            Structures</h4>
+
+          <p style="color: var(--light-gray); margin-bottom: 10px; line-height: 1.6;"><strong>Trees</strong>:
+            Hierarchical structure. Binary Tree, BST, AVL Tree, Heap.</p>
+          <ul
+            style="color: var(--light-gray); margin-bottom: 15px; line-height: 1.8; margin-left: 20px; list-style-type: disc;">
+            <li>BST Search: O(log n) average, O(n) worst case</li>
+            <li>Heap: Priority Queue — O(log n) insert/delete</li>
+            <li>Trie: Efficient string prefix search</li>
+          </ul>
+          <p style="color: var(--light-gray); margin-bottom: 30px; line-height: 1.6;"><strong>Graphs</strong>: Nodes +
+            Edges. Can be directed/undirected, weighted/unweighted.</p>
+
+          <h4 class="h4" style="margin-top: 30px; margin-bottom: 10px; color: var(--vegas-gold);"> 3. Key Algorithms
+          </h4>
+
+          <h5 class="h5" style="margin-top: 15px; margin-bottom: 8px; color: var(--white-2);">Sorting</h5>
+          <div style="overflow-x: auto; margin-bottom: 20px;">
+            <table
+              style="width: 100%; text-align: left; color: var(--light-gray); border-collapse: collapse; border: 1px solid var(--jet);">
+              <thead>
+                <tr style="background-color: var(--eerie-black-1); border-bottom: 1px solid var(--jet);">
+                  <th style="padding: 10px;">Algorithm</th>
+                  <th style="padding: 10px;">Best</th>
+                  <th style="padding: 10px;">Average</th>
+                  <th style="padding: 10px;">Worst</th>
+                  <th style="padding: 10px;">Stable?</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid var(--jet);">
+                  <td style="padding: 10px;">Bubble Sort</td>
+                  <td style="padding: 10px;">O(n)</td>
+                  <td style="padding: 10px;">O(n²)</td>
+                  <td style="padding: 10px;">O(n²)</td>
+                  <td style="padding: 10px;"> Yes</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--jet);">
+                  <td style="padding: 10px;">Merge Sort</td>
+                  <td style="padding: 10px;">O(n log n)</td>
+                  <td style="padding: 10px;">O(n log n)</td>
+                  <td style="padding: 10px;">O(n log n)</td>
+                  <td style="padding: 10px;"> Yes</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--jet);">
+                  <td style="padding: 10px;">Quick Sort</td>
+                  <td style="padding: 10px;">O(n log n)</td>
+                  <td style="padding: 10px;">O(n log n)</td>
+                  <td style="padding: 10px;">O(n²)</td>
+                  <td style="padding: 10px;"> No</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px;">Heap Sort</td>
+                  <td style="padding: 10px;">O(n log n)</td>
+                  <td style="padding: 10px;">O(n log n)</td>
+                  <td style="padding: 10px;">O(n log n)</td>
+                  <td style="padding: 10px;"> No</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h5 class="h5" style="margin-top: 20px; margin-bottom: 8px; color: var(--white-2);">Graph Traversal</h5>
+          <pre
+            style="background: var(--eerie-black-1); padding: 20px; border-radius: 12px; color: var(--orange-yellow-crayola); margin-bottom: 20px; overflow-x: auto; font-family: 'Courier New', Courier, monospace; line-height: 1.5;"><code>BFS(Graph, start):
+    queue ← [start]
+    visited ← {start}
+    while queue is not empty:
+        node ← queue.dequeue()
+        for each neighbor of node:
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.enqueue(neighbor)
+
+DFS(Graph, node, visited):
+    visited.add(node)
+    for each neighbor of node:
+        if neighbor not in visited:
+            DFS(Graph, neighbor, visited)</code></pre>
+
+          <h5 class="h5" style="margin-top: 20px; margin-bottom: 8px; color: var(--white-2);">Searching</h5>
+          <ul
+            style="color: var(--light-gray); margin-bottom: 30px; line-height: 1.8; margin-left: 20px; list-style-type: disc;">
+            <li><strong>Linear Search</strong>: O(n) — checks one by one</li>
+            <li><strong>Binary Search</strong>: O(log n) — array must be sorted</li>
+          </ul>
+
+          <h4 class="h4" style="margin-top: 30px; margin-bottom: 10px; color: var(--vegas-gold);"> 4. Dynamic
+            Programming</h4>
+          <p style="color: var(--light-gray); margin-bottom: 15px; line-height: 1.6;">DP solves complex problems by
+            breaking them into overlapping subproblems and storing results (memoization/tabulation).</p>
+          <ul
+            style="color: var(--light-gray); margin-bottom: 30px; line-height: 1.8; margin-left: 20px; list-style-type: disc;">
+            <li>Fibonacci Sequence — DP vs Recursion</li>
+            <li>Longest Common Subsequence (LCS)</li>
+            <li>0/1 Knapsack Problem</li>
+            <li>Shortest Path — Dijkstra, Bellman-Ford</li>
+          </ul>
+
+          <h4 class="h4" style="margin-top: 30px; margin-bottom: 10px; color: var(--vegas-gold);"> 5. Tips for Learning
+            DSA</h4>
+          <ul
+            style="color: var(--light-gray); margin-bottom: 30px; line-height: 1.8; margin-left: 20px; list-style-type: disc;">
+            <li>Start with Arrays, Strings, and Basic Recursion.</li>
+            <li>Learn sorting algorithms before graphs.</li>
+            <li>Practice daily on LeetCode, CodeChef, or GeeksforGeeks.</li>
+            <li>Always analyze Time &amp; Space complexity for every solution.</li>
+            <li>Dry run your code on paper before submitting.</li>
+          </ul>
+
+          <h4 class="h4" style="margin-top: 30px; margin-bottom: 10px; color: var(--white-2);"> Conclusion</h4>
+          <p style="color: var(--light-gray); margin-bottom: 10px; line-height: 1.6;">DSA is not learnt overnight — it
+            is a skill built through consistent practice. Focus on understanding the core concepts, analyze complexity,
+            and solve problems every day. The journey from beginner to expert is gradual, but the rewards in placements
+            and competitive programming are immense. Start today!</p>
+        </section>
+
+        <!-- FULL BLOG POST VIEW 2 -->
+        <section id="post2" class="full-blog-post blog-post-content content-card" style="display: none; padding: 30px;">
+          <button data-blog-back
+            style="color: var(--orange-yellow-crayola); margin-bottom: 25px; font-size: var(--fs-5); display: flex; align-items: center; gap: 5px;">
+            <ion-icon name="arrow-back-outline"></ion-icon> Back to Articles
+          </button>
+
+          <h3 class="h3" style="margin-bottom: 15px; color: var(--white-1); line-height: 1.3;">New Technology in 2026: A
+            Student’s Guide to Learning and Career Growth</h3>
+          <p style="color: var(--light-gray); margin-bottom: 20px; line-height: 1.6;">Technology in 2026 is not just
+            about futuristic gadgets — it’s about tools that directly empower students and professionals. From AI-driven
+            coding assistants to immersive classrooms, the latest innovations are reshaping how we learn, practice, and
+            prepare for careers.</p>
+
+          <h4 class="h4" style="margin-top: 30px; margin-bottom: 15px; color: var(--vegas-gold);"> Artificial
+            Intelligence for Learning</h4>
+          <ul
+            style="color: var(--light-gray); margin-bottom: 20px; line-height: 1.6; margin-left: 20px; list-style-type: none;">
+            <li style="margin-bottom: 10px;"><strong>AI Tutors:</strong> Personalized study plans, instant feedback on
+              assignments, and adaptive quizzes.</li>
+            <li style="margin-bottom: 10px;"><strong>Coding Assistants:</strong> Debugging, refactoring, and generating
+              pseudo code for competitive programming.</li>
+            <li style="margin-bottom: 10px;"><strong>Exam Prep:</strong> AI can simulate practice tests, provide dry
+              runs, and generate revision tables.</li>
+          </ul>
+          <p
+            style="color: var(--light-gray-70); margin-bottom: 30px; line-height: 1.6; padding-left: 15px; border-left: 3px solid var(--orange-yellow-crayola);">
+            <em>Practical Tip:</em> Use AI to practice data structures like stacks, queues, and BSTs with layered
+            explanations (aim, pseudo code, dry run, output).
+          </p>
+
+          <h4 class="h4" style="margin-top: 30px; margin-bottom: 15px; color: var(--vegas-gold);"> Augmented &amp;
+            Virtual Reality in Education</h4>
+          <ul
+            style="color: var(--light-gray); margin-bottom: 20px; line-height: 1.6; margin-left: 20px; list-style-type: none;">
+            <li style="margin-bottom: 10px;"><strong>AR Classrooms:</strong> Visualize algorithms, grammar rules, or
+              even historical events in 3D.</li>
+            <li style="margin-bottom: 10px;"><strong>VR Labs:</strong> Simulate experiments without physical equipment.
+            </li>
+            <li style="margin-bottom: 10px;"><strong>Collaboration:</strong> Students across the globe can meet in
+              immersive study spaces.</li>
+          </ul>
+          <p
+            style="color: var(--light-gray-70); margin-bottom: 30px; line-height: 1.6; padding-left: 15px; border-left: 3px solid var(--orange-yellow-crayola);">
+            <em>Practical Tip:</em> Try AR apps that let you “see” linked lists or trees grow node by node.
+          </p>
+
+          <h4 class="h4" style="margin-top: 30px; margin-bottom: 15px; color: var(--vegas-gold);"> Web3 &amp; Blockchain
+            for Students</h4>
+          <ul
+            style="color: var(--light-gray); margin-bottom: 20px; line-height: 1.6; margin-left: 20px; list-style-type: none;">
+            <li style="margin-bottom: 10px;"><strong>Digital Certificates:</strong> Secure, verifiable academic records.
+            </li>
+            <li style="margin-bottom: 10px;"><strong>Decentralized Learning Platforms:</strong> Peer-to-peer knowledge
+              sharing.</li>
+            <li style="margin-bottom: 10px;"><strong>Career Portfolios:</strong> Blockchain resumes that employers can
+              instantly verify.</li>
+          </ul>
+          <p
+            style="color: var(--light-gray-70); margin-bottom: 30px; line-height: 1.6; padding-left: 15px; border-left: 3px solid var(--orange-yellow-crayola);">
+            <em>Practical Tip:</em> Explore blockchain-based platforms to store your project work securely.
+          </p>
+
+          <h4 class="h4" style="margin-top: 30px; margin-bottom: 15px; color: var(--vegas-gold);"> Sustainable Tech for
+            Campus Life</h4>
+          <ul
+            style="color: var(--light-gray); margin-bottom: 20px; line-height: 1.6; margin-left: 20px; list-style-type: none;">
+            <li style="margin-bottom: 10px;"><strong>Smart Energy Systems:</strong> Efficient campus power management.
+            </li>
+            <li style="margin-bottom: 10px;"><strong>Electric Vehicles (EVs):</strong> Affordable student transport
+              options.</li>
+            <li style="margin-bottom: 10px;"><strong>Green Computing:</strong> Cloud services optimized for
+              sustainability.</li>
+          </ul>
+          <p
+            style="color: var(--light-gray-70); margin-bottom: 30px; line-height: 1.6; padding-left: 15px; border-left: 3px solid var(--orange-yellow-crayola);">
+            <em>Practical Tip:</em> Learn how sustainable tech integrates with software — e.g., algorithms for smart
+            grids.
+          </p>
+
+          <h4 class="h4" style="margin-top: 30px; margin-bottom: 15px; color: var(--white-2);"> Career Applications</h4>
+          <div style="overflow-x: auto; margin-bottom: 30px;">
+            <table
+              style="width: 100%; text-align: left; color: var(--light-gray); border-collapse: collapse; border: 1px solid var(--jet);">
+              <thead>
+                <tr style="border-bottom: 1px solid var(--jet); background-color: var(--eerie-black-1);">
+                  <th style="padding: 10px;">Technology</th>
+                  <th style="padding: 10px;">Student Use Case</th>
+                  <th style="padding: 10px;">Career Impact</th>
+                  <th style="padding: 10px;">Example</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid var(--jet);">
+                  <td style="padding: 10px;">AI</td>
+                  <td style="padding: 10px;">Coding practice, exam prep</td>
+                  <td style="padding: 10px;">Software engineering, data science</td>
+                  <td style="padding: 10px;">AI debugging tools</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--jet);">
+                  <td style="padding: 10px;">AR/VR</td>
+                  <td style="padding: 10px;">Visual learning, virtual labs</td>
+                  <td style="padding: 10px;">Education, design, healthcare</td>
+                  <td style="padding: 10px;">AR anatomy apps</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--jet);">
+                  <td style="padding: 10px;">Web3 &amp; Blockchain</td>
+                  <td style="padding: 10px;">Secure records, portfolios</td>
+                  <td style="padding: 10px;">Finance, cybersecurity</td>
+                  <td style="padding: 10px;">Blockchain resumes</td>
+                </tr>
+                <tr>
+                  <td style="padding: 10px;">Smart Energy &amp; EVs</td>
+                  <td style="padding: 10px;">Sustainable projects</td>
+                  <td style="padding: 10px;">Green tech, engineering</td>
+                  <td style="padding: 10px;">EV design projects</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4 class="h4" style="margin-top: 30px; margin-bottom: 10px; color: var(--white-2);"> Conclusion</h4>
+          <p style="color: var(--light-gray); margin-bottom: 10px; line-height: 1.6;">For students in 2026, new
+            technology is not optional — it’s a career accelerator. AI sharpens coding and exam prep, AR/VR makes
+            learning immersive, Web3 secures academic records, and sustainable tech opens new career paths. The key is
+            to practice with these tools daily, integrating them into study routines and project work.</p>
+        </section>
+
+        <script>
+          const blogList = document.getElementById('blogList');
+          const readBtns = document.querySelectorAll('[data-blog-btn]');
+          const backBtns = document.querySelectorAll('[data-blog-back]');
+          const fullPosts = document.querySelectorAll('.full-blog-post');
+
+          readBtns.forEach(btn => {
+            btn.addEventListener('click', function (e) {
+              e.preventDefault();
+              const targetId = this.getAttribute('data-blog-btn');
+              blogList.style.display = 'none';
+              document.getElementById(targetId).style.display = 'block';
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+          });
+
+          backBtns.forEach(btn => {
+            btn.addEventListener('click', function (e) {
+              e.preventDefault();
+              fullPosts.forEach(post => post.style.display = 'none');
+              blogList.style.display = 'block';
+            });
+          });
+        </script>
+
+      </article>
+
+
+
+
+
+      <!--
+        - #CONTACT
+      -->
+
+      <article class="contact" data-page="contact">
+
+        <header>
+          <h2 class="h2 article-title">Contact</h2>
+        </header>
+
+        <section class="mapbox" data-mapbox>
+          <figure>
+            <iframe src="https://maps.google.com/maps?q=konapattu,+Tamil+Nadu,+India&output=embed" width="400"
+              height="300" loading="lazy"></iframe>
+          </figure>
+        </section>
+
+        <section class="contact-form">
+
+          <h3 class="h3 form-title">Contact Form</h3>
+
+          <form action="https://formspree.io/f/mbdpgpkw" method="POST" class="form" data-form>
+
+            <div class="input-wrapper">
+              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
+
+              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
+            </div>
+
+            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+
+            <button class="form-btn" type="submit" disabled data-form-btn>
+              <ion-icon name="paper-plane"></ion-icon>
+              <span>Send Message</span>
+            </button>
+
+          </form>
+
+        </section>
+
+      </article>
+
+    </div>
+
+  </main>
+
+
+
+
+
+
+  <!--
+    - custom js link
+  -->
+  <script src="./assets/js/script.js"></script>
+
+  <!--
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+</body>
+
+</html>
