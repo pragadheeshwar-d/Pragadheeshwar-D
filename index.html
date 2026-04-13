@@ -525,20 +525,13 @@
 
             <li class="service-item">
               <div class="service-icon-box">
-                <img src="./assets/images/icon-design.svg" alt="specialization icon" width="40">
+                <img src="./assets/images/adhiraa.png" alt="ai icon" width="40" style="border-radius: 8px;">
               </div>
               <div class="service-content-box" style="width: 100%;">
-                <h4 class="h4 service-item-title">Current Specialization</h4>
-                <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px;">
-                  <span
-                    style="background: var(--onyx); border: 1px solid var(--jet); padding: 2px 10px; border-radius: 6px; font-size: var(--fs-8); color: var(--light-gray);">Simulation</span>
-                  <span
-                    style="background: var(--onyx); border: 1px solid var(--jet); padding: 2px 10px; border-radius: 6px; font-size: var(--fs-8); color: var(--light-gray);">Queues
-                    & Stacks</span>
-                  <span
-                    style="background: var(--onyx); border: 1px solid var(--jet); padding: 2px 10px; border-radius: 6px; font-size: var(--fs-8); color: var(--light-gray);">BST
-                    & AVL</span>
-                </div>
+                <h4 class="h4 service-item-title">AI & Voice Development</h4>
+                <p class="service-item-text">
+                  Building high-performance Voice AI assistants using LiveKit, Python, and modern web technologies.
+                </p>
               </div>
             </li>
 
@@ -766,6 +759,10 @@
               <button data-filter-btn>Web development</button>
             </li>
 
+            <li class="filter-item">
+              <button data-filter-btn>AI & Voice Development</button>
+            </li>
+
           </ul>
 
           <div class="filter-select-box">
@@ -790,11 +787,33 @@
                 <button data-select-item>Web development</button>
               </li>
 
+              <li class="select-item">
+                <button data-select-item>AI & Voice Development</button>
+              </li>
+
             </ul>
 
           </div>
 
           <ul class="project-list">
+
+            <li class="project-item active" data-filter-item data-category="ai & voice development">
+              <a href="#" class="project-link" data-project-btn="prj-adhiraa">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/adhiraa.png" alt="Adhiraa" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">Adhiraa</h3>
+
+                <p class="project-category">AI & Voice Development</p>
+
+              </a>
+            </li>
 
             <li class="project-item active" data-filter-item data-category="web development">
               <a href="#" class="project-link" data-project-btn="prj1">
@@ -860,6 +879,51 @@
                 style="background: var(--onyx); padding: 5px 12px; border-radius: 8px; font-size: 12px;">PeerJS</span>
               <span
                 style="background: var(--onyx); padding: 5px 12px; border-radius: 8px; font-size: 12px;">HTML5/CSS3</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Adhiraa Detail -->
+        <section id="prj-adhiraa" class="full-project-detail content-card" style="display: none; padding: 30px;">
+          <button data-project-back
+            style="color: var(--orange-yellow-crayola); margin-bottom: 25px; font-size: var(--fs-5); display: flex; align-items: center; gap: 5px;">
+            <ion-icon name="arrow-back-outline"></ion-icon> Back to Projects
+          </button>
+
+          <figure class="project-detail-banner"
+            style="width: 100%; border-radius: 16px; overflow: hidden; margin-bottom: 25px; background: var(--jet);">
+            <img src="./assets/images/adhiraa.png" alt="Adhiraa"
+              style="width: 100%; height: 300px; object-fit: cover;">
+          </figure>
+
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 15px; margin-bottom: 5px;">
+            <h3 class="h3" style="color: var(--white-1); font-size: 24px;">Adhiraa</h3>
+            <a href="https://adhiraa-web.vercel.app/" target="_blank" class="cert-btn cert-btn-view" style="flex: none; min-width: 140px; border-radius: 10px; background: var(--accent-cyan); color: var(--eerie-black-1); font-weight: 600;">
+              <ion-icon name="globe-outline"></ion-icon> Live Demo
+            </a>
+          </div>
+          
+          <p class="project-category" style="color: var(--accent-purple); margin-bottom: 20px; font-size: var(--fs-6);">
+            AI & Voice Development</p>
+
+          <div class="project-content" style="color: var(--light-gray); font-size: var(--fs-6); line-height: 1.6;">
+            <p style="margin-bottom: 15px;">Adhiraa is a cutting-edge Voice AI assistant designed to provide high-performance, low-latency voice interactions. Utilizing the power of LiveKit and Python, it offers a seamless experience with state-of-the-art voice activity detection (VAD) and a modern glassmorphism interface.</p>
+
+            <h4 class="h4" style="color: var(--white-2); margin: 20px 0 10px;">Key Features</h4>
+            <ul style="list-style: disc; margin-left: 20px; margin-bottom: 20px;">
+              <li>Real-time voice interaction with LiveKit Cloud integration.</li>
+              <li>Status-aware UI featuring "Live" and "Idle" indicators for intuitive user feedback.</li>
+              <li>Minimalist glassmorphism design for a premium, high-tech aesthetic.</li>
+              <li>Support for over 50 AI model providers for diverse agent capabilities.</li>
+            </ul>
+
+            <h4 class="h4" style="color: var(--white-2); margin: 20px 0 10px;">Technologies Used</h4>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+              <span style="background: var(--onyx); padding: 5px 12px; border-radius: 8px; font-size: 12px; border: 1px solid var(--jet);">Python</span>
+              <span style="background: var(--onyx); padding: 5px 12px; border-radius: 8px; font-size: 12px; border: 1px solid var(--jet);">Next.js</span>
+              <span style="background: var(--onyx); padding: 5px 12px; border-radius: 8px; font-size: 12px; border: 1px solid var(--jet);">LiveKit</span>
+              <span style="background: var(--onyx); padding: 5px 12px; border-radius: 8px; font-size: 12px; border: 1px solid var(--jet);">WebRTC</span>
+              <span style="background: var(--onyx); padding: 5px 12px; border-radius: 8px; font-size: 12px; border: 1px solid var(--jet);">Vercel</span>
             </div>
           </div>
         </section>
@@ -1097,6 +1161,38 @@
           <ul class="blog-posts-list">
 
             <li class="blog-post-item">
+              <a href="#" data-blog-btn="post3">
+
+                <figure class="blog-banner-box">
+                  <img src="./assets/images/blog-graph.png" alt="BFS and DFS in Graph" loading="lazy">
+                </figure>
+
+                <div class="blog-content">
+
+                  <div class="blog-meta">
+                    <p class="blog-category">Algorithms</p>
+
+                    <span class="dot"></span>
+
+                    <time datetime="2026-04-10">Apr 10, 2026</time>
+                  </div>
+
+                  <h3 class="h3 blog-item-title">BFS vs. DFS: Mastering Graph Traversal</h3>
+
+                  <p class="blog-text">
+                    Graph traversal is the cornerstone of network analysis, game AI, and web crawling. Learn the deep differences between Breadth-First and Depth-First Search...
+                  </p>
+
+                  <span
+                    style="color: var(--accent-purple); margin-top: 15px; display: inline-block; font-size: var(--fs-6); font-weight: var(--fw-500);">Read
+                    More &rarr;</span>
+
+                </div>
+
+              </a>
+            </li>
+
+            <li class="blog-post-item">
               <a href="#" data-blog-btn="post2">
 
                 <figure class="blog-banner-box">
@@ -1121,7 +1217,7 @@
                   </p>
 
                   <span
-                    style="color: var(--orange-yellow-crayola); margin-top: 15px; display: inline-block; font-size: var(--fs-6); font-weight: var(--fw-500);">Read
+                    style="color: var(--accent-purple); margin-top: 15px; display: inline-block; font-size: var(--fs-6); font-weight: var(--fw-500);">Read
                     More &rarr;</span>
 
                 </div>
@@ -1154,7 +1250,7 @@
                   </p>
 
                   <span
-                    style="color: var(--orange-yellow-crayola); margin-top: 15px; display: inline-block; font-size: var(--fs-6); font-weight: var(--fw-500);">Read
+                    style="color: var(--accent-purple); margin-top: 15px; display: inline-block; font-size: var(--fs-6); font-weight: var(--fw-500);">Read
                     More &rarr;</span>
 
                 </div>
@@ -1169,7 +1265,7 @@
         <!-- FULL BLOG POST VIEW 1 - DSA -->
         <section id="post1" class="full-blog-post blog-post-content content-card" style="display: none; padding: 30px;">
           <button data-blog-back
-            style="color: var(--orange-yellow-crayola); margin-bottom: 25px; font-size: var(--fs-5); display: flex; align-items: center; gap: 5px;">
+            style="color: var(--accent-purple); margin-bottom: 25px; font-size: var(--fs-5); display: flex; align-items: center; gap: 5px;">
             <ion-icon name="arrow-back-outline"></ion-icon> Back to Articles
           </button>
 
@@ -1180,7 +1276,7 @@
             placements, competitive programming, or just want to write better code, mastering DSA is non-negotiable.
             This guide covers all major topics with definitions, complexity analysis, and practical tips.</p>
 
-          <h4 class="h4" style="margin-top: 30px; margin-bottom: 10px; color: var(--vegas-gold);"> 1. Linear Data
+          <h4 class="h4" style="margin-top: 30px; margin-bottom: 10px; color: var(--accent-cyan);"> 1. Linear Data
             Structures</h4>
 
           <p style="color: var(--light-gray); margin-bottom: 10px; line-height: 1.6;"><strong>Arrays</strong>:
@@ -1192,7 +1288,7 @@
           <p style="color: var(--light-gray); margin-bottom: 30px; line-height: 1.6;"><strong>Queue (FIFO)</strong>:
             Enqueue at rear, Dequeue from front. Used in BFS and CPU scheduling.</p>
 
-          <h4 class="h4" style="margin-top: 30px; margin-bottom: 10px; color: var(--vegas-gold);"> 2. Non-Linear Data
+          <h4 class="h4" style="margin-top: 30px; margin-bottom: 10px; color: var(--accent-cyan);"> 2. Non-Linear Data
             Structures</h4>
 
           <p style="color: var(--light-gray); margin-bottom: 10px; line-height: 1.6;"><strong>Trees</strong>:
@@ -1206,7 +1302,7 @@
           <p style="color: var(--light-gray); margin-bottom: 30px; line-height: 1.6;"><strong>Graphs</strong>: Nodes +
             Edges. Can be directed/undirected, weighted/unweighted.</p>
 
-          <h4 class="h4" style="margin-top: 30px; margin-bottom: 10px; color: var(--vegas-gold);"> 3. Key Algorithms
+          <h4 class="h4" style="margin-top: 30px; margin-bottom: 10px; color: var(--accent-cyan);"> 3. Key Algorithms
           </h4>
 
           <h5 class="h5" style="margin-top: 15px; margin-bottom: 8px; color: var(--white-2);">Sorting</h5>
@@ -1257,7 +1353,7 @@
 
           <h5 class="h5" style="margin-top: 20px; margin-bottom: 8px; color: var(--white-2);">Graph Traversal</h5>
           <pre
-            style="background: var(--eerie-black-1); padding: 20px; border-radius: 12px; color: var(--orange-yellow-crayola); margin-bottom: 20px; overflow-x: auto; font-family: 'Courier New', Courier, monospace; line-height: 1.5;"><code>BFS(Graph, start):
+            style="background: var(--eerie-black-1); padding: 20px; border-radius: 12px; color: var(--accent-purple); margin-bottom: 20px; overflow-x: auto; font-family: 'Courier New', Courier, monospace; line-height: 1.5;"><code>BFS(Graph, start):
     queue ← [start]
     visited ← {start}
     while queue is not empty:
@@ -1280,7 +1376,7 @@ DFS(Graph, node, visited):
             <li><strong>Binary Search</strong>: O(log n) — array must be sorted</li>
           </ul>
 
-          <h4 class="h4" style="margin-top: 30px; margin-bottom: 10px; color: var(--vegas-gold);"> 4. Dynamic
+          <h4 class="h4" style="margin-top: 30px; margin-bottom: 10px; color: var(--accent-cyan);"> 4. Dynamic
             Programming</h4>
           <p style="color: var(--light-gray); margin-bottom: 15px; line-height: 1.6;">DP solves complex problems by
             breaking them into overlapping subproblems and storing results (memoization/tabulation).</p>
@@ -1292,7 +1388,7 @@ DFS(Graph, node, visited):
             <li>Shortest Path — Dijkstra, Bellman-Ford</li>
           </ul>
 
-          <h4 class="h4" style="margin-top: 30px; margin-bottom: 10px; color: var(--vegas-gold);"> 5. Tips for Learning
+          <h4 class="h4" style="margin-top: 30px; margin-bottom: 10px; color: var(--accent-cyan);"> 5. Tips for Learning
             DSA</h4>
           <ul
             style="color: var(--light-gray); margin-bottom: 30px; line-height: 1.8; margin-left: 20px; list-style-type: disc;">
@@ -1313,7 +1409,7 @@ DFS(Graph, node, visited):
         <!-- FULL BLOG POST VIEW 2 -->
         <section id="post2" class="full-blog-post blog-post-content content-card" style="display: none; padding: 30px;">
           <button data-blog-back
-            style="color: var(--orange-yellow-crayola); margin-bottom: 25px; font-size: var(--fs-5); display: flex; align-items: center; gap: 5px;">
+            style="color: var(--accent-purple); margin-bottom: 25px; font-size: var(--fs-5); display: flex; align-items: center; gap: 5px;">
             <ion-icon name="arrow-back-outline"></ion-icon> Back to Articles
           </button>
 
@@ -1324,7 +1420,7 @@ DFS(Graph, node, visited):
             coding assistants to immersive classrooms, the latest innovations are reshaping how we learn, practice, and
             prepare for careers.</p>
 
-          <h4 class="h4" style="margin-top: 30px; margin-bottom: 15px; color: var(--vegas-gold);"> Artificial
+          <h4 class="h4" style="margin-top: 30px; margin-bottom: 15px; color: var(--accent-cyan);"> Artificial
             Intelligence for Learning</h4>
           <ul
             style="color: var(--light-gray); margin-bottom: 20px; line-height: 1.6; margin-left: 20px; list-style-type: none;">
@@ -1341,7 +1437,7 @@ DFS(Graph, node, visited):
             explanations (aim, pseudo code, dry run, output).
           </p>
 
-          <h4 class="h4" style="margin-top: 30px; margin-bottom: 15px; color: var(--vegas-gold);"> Augmented &amp;
+          <h4 class="h4" style="margin-top: 30px; margin-bottom: 15px; color: var(--accent-cyan);"> Augmented &amp;
             Virtual Reality in Education</h4>
           <ul
             style="color: var(--light-gray); margin-bottom: 20px; line-height: 1.6; margin-left: 20px; list-style-type: none;">
@@ -1357,7 +1453,7 @@ DFS(Graph, node, visited):
             <em>Practical Tip:</em> Try AR apps that let you “see” linked lists or trees grow node by node.
           </p>
 
-          <h4 class="h4" style="margin-top: 30px; margin-bottom: 15px; color: var(--vegas-gold);"> Web3 &amp; Blockchain
+          <h4 class="h4" style="margin-top: 30px; margin-bottom: 15px; color: var(--accent-cyan);"> Web3 &amp; Blockchain
             for Students</h4>
           <ul
             style="color: var(--light-gray); margin-bottom: 20px; line-height: 1.6; margin-left: 20px; list-style-type: none;">
@@ -1373,7 +1469,7 @@ DFS(Graph, node, visited):
             <em>Practical Tip:</em> Explore blockchain-based platforms to store your project work securely.
           </p>
 
-          <h4 class="h4" style="margin-top: 30px; margin-bottom: 15px; color: var(--vegas-gold);"> Sustainable Tech for
+          <h4 class="h4" style="margin-top: 30px; margin-bottom: 15px; color: var(--accent-cyan);"> Sustainable Tech for
             Campus Life</h4>
           <ul
             style="color: var(--light-gray); margin-bottom: 20px; line-height: 1.6; margin-left: 20px; list-style-type: none;">
@@ -1436,6 +1532,105 @@ DFS(Graph, node, visited):
             technology is not optional — it’s a career accelerator. AI sharpens coding and exam prep, AR/VR makes
             learning immersive, Web3 secures academic records, and sustainable tech opens new career paths. The key is
             to practice with these tools daily, integrating them into study routines and project work.</p>
+        </section>
+
+        <!-- FULL BLOG POST VIEW 3 - BFS/DFS -->
+        <section id="post3" class="full-blog-post blog-post-content content-card" style="display: none; padding: 30px;">
+          <button data-blog-back
+            style="color: var(--accent-purple); margin-bottom: 25px; font-size: var(--fs-5); display: flex; align-items: center; gap: 5px;">
+            <ion-icon name="arrow-back-outline"></ion-icon> Back to Articles
+          </button>
+
+          <h3 class="h3" style="margin-bottom: 15px; color: var(--white-1); line-height: 1.3;">BFS vs. DFS: Mastering Graph Traversal Techniques</h3>
+          
+          <img src="./assets/images/blog-graph.png" alt="Graph Traversal" style="width: 100%; border-radius: 16px; margin-bottom: 25px; height: 300px; object-fit: cover;">
+          
+          <p style="color: var(--light-gray); margin-bottom: 20px; line-height: 1.6;">Graph traversal algorithms are fundamental to computer science. They allow us to visit every node in a graph systematically. Whether you're finding the shortest path in a network or checking connectivity, understanding **Breadth-First Search (BFS)** and **Depth-First Search (DFS)** is essential.</p>
+
+          <h4 class="h4" style="margin-top: 30px; margin-bottom: 10px; color: var(--accent-cyan);"> 1. Breadth-First Search (BFS)</h4>
+          <p style="color: var(--light-gray); margin-bottom: 15px; line-height: 1.6;">BFS explores the neighbor nodes first, before moving to the next level neighbors. It uses a **Queue** (FIFO) data structure to keep track of the nodes to be visited next.</p>
+          
+          <p style="color: var(--light-gray-70); margin-bottom: 15px; line-height: 1.6; padding-left: 15px; border-left: 3px solid var(--accent-cyan);">
+            <strong>Core Concept:</strong> Level-order traversal. Visits nodes in the order of their distance from the source.
+          </p>
+
+          <h5 class="h5" style="margin-top: 20px; margin-bottom: 8px; color: var(--white-2);">Algorithm:</h5>
+          <pre style="background: var(--eerie-black-1); padding: 20px; border-radius: 12px; color: var(--accent-cyan); margin-bottom: 20px; overflow-x: auto; font-family: 'Courier New', Courier, monospace; line-height: 1.5;"><code>BFS(Graph, startNode):
+    Queue q
+    Visited[] v
+    q.push(startNode)
+    v[startNode] = True
+
+    while q is not empty:
+        curr = q.pop()
+        for each neighbor in Graph[curr]:
+            if neighbor is not visited:
+                v[neighbor] = True
+                q.push(neighbor)</code></pre>
+
+          <h4 class="h4" style="margin-top: 40px; margin-bottom: 10px; color: var(--accent-cyan);"> 2. Depth-First Search (DFS)</h4>
+          <p style="color: var(--light-gray); margin-bottom: 15px; line-height: 1.6;">DFS explores as far as possible along each branch before backtracking. It uses a **Stack** (LIFO) or **Recursion** to dive deep into the graph nodes.</p>
+
+          <p style="color: var(--light-gray-70); margin-bottom: 15px; line-height: 1.6; padding-left: 15px; border-left: 3px solid var(--accent-purple);">
+            <strong>Core Concept:</strong> Dives deep into one path before trying alternatives. Great for pathfinding and cycle detection.
+          </p>
+
+          <h5 class="h5" style="margin-top: 20px; margin-bottom: 8px; color: var(--white-2);">Algorithm (Recursive):</h5>
+          <pre style="background: var(--eerie-black-1); padding: 20px; border-radius: 12px; color: var(--accent-purple); margin-bottom: 20px; overflow-x: auto; font-family: 'Courier New', Courier, monospace; line-height: 1.5;"><code>DFS(Graph, node, visited):
+    visited[node] = True
+    for each neighbor in Graph[node]:
+        if neighbor is not visited:
+            DFS(Graph, neighbor, visited)</code></pre>
+
+          <h4 class="h4" style="margin-top: 40px; margin-bottom: 15px; color: var(--white-2);"> Comparison Table</h4>
+          <div style="overflow-x: auto; margin-bottom: 30px;">
+            <table style="width: 100%; text-align: left; color: var(--light-gray); border-collapse: collapse; border: 1px solid var(--jet);">
+              <thead>
+                <tr style="border-bottom: 1px solid var(--jet); background-color: var(--eerie-black-1);">
+                  <th style="padding: 12px;">Feature</th>
+                  <th style="padding: 12px;">BFS</th>
+                  <th style="padding: 12px;">DFS</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid var(--jet);">
+                  <td style="padding: 12px;">Data Structure</td>
+                  <td style="padding: 12px;">Queue (FIFO)</td>
+                  <td style="padding: 12px;">Stack (LIFO) / Recursion</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--jet);">
+                  <td style="padding: 12px;">Approach</td>
+                  <td style="padding: 12px;">Level-by-level</td>
+                  <td style="padding: 12px;">Branch-by-branch</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--jet);">
+                  <td style="padding: 12px;">Shortest Path</td>
+                  <td style="padding: 12px;">Best (for unweighted)</td>
+                  <td style="padding: 12px;">Not guaranteed</td>
+                </tr>
+                <tr style="border-bottom: 1px solid var(--jet);">
+                  <td style="padding: 12px;">Space Complexity</td>
+                  <td style="padding: 12px;">O(W) - Width of graph</td>
+                  <td style="padding: 12px;">O(H) - Height of graph</td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px;">Best For</td>
+                  <td style="padding: 12px;">Shortest path, Peer-to-peer</td>
+                  <td style="padding: 12px;">Cycle detection, Solving puzzles</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h4 class="h4" style="margin-top: 30px; margin-bottom: 10px; color: var(--white-2);"> Complexity Analysis</h4>
+          <ul style="color: var(--light-gray); margin-bottom: 30px; line-height: 1.8; margin-left: 20px; list-style-type: disc;">
+            <li><strong>Time Complexity:</strong> O(V + E) for both, where V is vertices and E is edges.</li>
+            <li><strong>Space Complexity for BFS:</strong> O(V) in the worst case (e.g., a star graph).</li>
+            <li><strong>Space Complexity for DFS:</strong> O(V) in the worst case (e.g., a line graph).</li>
+          </ul>
+
+          <h4 class="h4" style="margin-top: 30px; margin-bottom: 10px; color: var(--white-2);"> Conclusion</h4>
+          <p style="color: var(--light-gray); margin-bottom: 10px; line-height: 1.6;">Choosing between BFS and DFS depends on the problem at hand. If you need the shortest path in an unweighted graph, **BFS** is your friend. If you need to explore every possibility (like a Sudoku solver) or find cycles, **DFS** is the way to go. Master both to become an expert in graph theory!</p>
         </section>
 
         <script>
